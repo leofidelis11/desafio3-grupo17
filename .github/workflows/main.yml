@@ -1,1 +1,30 @@
+name: 'Desafio 3 - Teste de API - CI'
 
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      BASE_URL: 'http://localhost:3000'
+
+    steps:
+      - name: Checkout testes de API
+        uses: actions/checkout@v4
+
+      - name: Iniciar a API
+        run: |
+          git clone https://github.com/leofidelis11/pgats-02-api.git
+          cd pgats-02-api
+          npm install express swagger-ui-express bcryptjs
+          node server.js &
+
+      - name: Aguardar API iniciar
+        run: sleep 10
+
+      - name: Rodar testes funcionais
+        run: |
+          npm install
+          npm test
