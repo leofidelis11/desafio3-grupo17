@@ -16,4 +16,41 @@ describe('Users', () => {
         })
 
     })
+
+   describe('GET /users', () => {
+        it('Deve listar os usuários existentes', async () => {
+            const resposta = await request('http://localhost:3000')
+            .get('/users')
+            .set('Content-Type', 'application/json')
+            .send({
+                    "username": "julio",
+                    "favorecidos": "priscila"
+                })
+
+            console.log(resposta.body)
+            expect(resposta.status).to.equal(200)
+
+            
+        })
+    }) 
+
+    describe('GET /users', () => {
+        it('Deve listar os usuários existentes', async () => {
+            const resposta = await request('http://localhost:3000')
+            .get('/users')
+            .set('Content-Type', 'application/json')
+            .send({
+                    "username": "priscila",
+                    "favorecidos": "julio"
+                })
+            
+            // checa se Julio e Priscila estão na lista
+            console.log(resposta.body)
+            expect(resposta.status).to.equal(200)
+            expect(resposta.body).to.be.an('array')
+                
+        })
+    })  
+
+
 })
