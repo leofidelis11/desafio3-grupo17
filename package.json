@@ -10,8 +10,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "chai": "^4.3.10",
-    "mocha": "^11.7.2",
+    "chai": "^4.5.0",
+    "mocha": "^11.7.4",
     "mochawesome": "^7.1.4",
     "supertest": "^7.1.4"
   }
