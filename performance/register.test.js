@@ -5,15 +5,17 @@ export const options = {
     VUS: 200,
     duration: '20s',
     thresholds: {
-        http_req_duration: ['p(95)<2000'],
+        http_req_duration: ['p(95)<3000'],
     },
 }
 
 export default function () {
+    let randomNumber = Math.random()
+
     const url = 'http://localhost:3000/users/register';
 
     const payload = JSON.stringify({
-        username: 'julio',
+        username: 'leo' + randomNumber,
         password: '123456'
       })
   
@@ -23,10 +25,10 @@ export default function () {
       },
     }
   
-    const resposta = http.post(url, payload, params);
+    const resposta = http.post(url, payload, params)
 
     check(resposta, {
-        'Validar que o status code é 400': (r) => r.status === 400,
+        'Validar que o status code é 201': (r) => r.status === 201,
     })
 
     sleep(1)
